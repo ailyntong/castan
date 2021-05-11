@@ -12,4 +12,4 @@ RUN chown -R castan /home/castan/castan
 USER castan
 WORKDIR /home/castan
 
-RUN /home/castan/castan/install.sh
+#RUN /home/castan/castan/install.sh
