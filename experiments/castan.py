@@ -25,6 +25,7 @@ def main():
     cmd('apt install -yqq iputils-ping')
     cmd('apt install -yqq iproute2')
     cmd('apt install -yqq net-tools')
+    cmd('apt install -yqq telnet telnetd iperf')
 
     s1 = net.addSwitch('s1')
     net.addLink(d1, s1, cls=TCLink, delay='1ms', bw=1000)
