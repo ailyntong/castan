@@ -1,0 +1,26 @@
+# Dockerfile for tester machine
+# Run in top level folder:
+# sudo docker build --tag=tester -f Dockerfile.tester .
+
+# parent image
+FROM ubuntu:xenial
+
+RUN apt-get update && apt-get install -y \
+    # ip \
+    iputils-ping \
+    iproute2 \
+    net-tools \
+    telnet telnetd \
+    iperf \
+    sudo
+
+RUN useradd -m castan && \
+    echo 'castan  ALL=(root) NOPASSWD: ALL' >> /etc/sudoers
+
+COPY ./scripts/perf /home/castan/scripts
+RUN chown -R castan /home/castan/scripts
+
+# USER castan
+# WORKDIR /home/castan
+
+# RUN /home/castan/scripts/init-tester.sh

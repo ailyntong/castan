@@ -13,6 +13,8 @@ sudo apt-get install -yqq \
     make binutils gcc \
     bc cmake
 
-~/scripts/setup-machines/install-dpdk.sh
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-~/scripts/setup-machines/install-moongen.sh
+$DIR/install-dpdk.sh
+
+$DIR/install-moongen.sh

@@ -14,7 +14,7 @@ if [ ! -f dpdk/.version ] || [ "$(cat dpdk/.version)" != $DPDK_RELEASE ]; then
     echo "[init] DPDK not found or obsolete, installing..."
 
     # Install required packages
-    sudo apt-get install -yqq wget build-essential linux-headers-`uname -r`
+    sudo apt-get install -yqq wget build-essential linux-headers-4.4.0-210-generic
 
     # If the directory already exists, assume it's an older version, delete it
     if [ -d dpdk ]; then
@@ -30,6 +30,8 @@ if [ ! -f dpdk/.version ] || [ "$(cat dpdk/.version)" != $DPDK_RELEASE ]; then
     # Compile it
     cd dpdk
     sed -ri 's,(PMD_PCAP=).*,\1y,' config/common_linuxapp
+    sed -i 's/$(shell uname -r)/4.4.0-210-generic/' mk/rte.vars.mk
+
     make config T=x86_64-native-linuxapp-gcc
     make install -j T=x86_64-native-linuxapp-gcc DESTDIR=.
 
