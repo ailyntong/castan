@@ -14,14 +14,17 @@ RUN apt-get update && apt-get install -y \
     iperf \
     sudo
 
-RUN useradd -m castan && \
-    echo 'castan  ALL=(root) NOPASSWD: ALL' >> /etc/sudoers
+# RUN useradd -m castan && \
+#     echo 'castan  ALL=(root) NOPASSWD: ALL' >> /etc/sudoers
 
-COPY ./scripts/perf /home/castan/scripts
-RUN chown -R castan /home/castan/scripts
+COPY . /root/castan
+# COPY ./scripts/perf /root/scripts
+# COPY ./examples /root/castan/examples
+# RUN chown -R castan /home/castan/scripts
 
-#USER castan
-#WORKDIR /home/castan
+# USER castan
+# WORKDIR /home/castan
 
-#RUN /home/castan/scripts/init-middlebox.sh
-#CMD ["/bin/bash", "/home/castan/scripts/init-middlebox.sh"]
+# RUN /home/castan/scripts/init-middlebox.sh
+# CMD ["/bin/bash", "/home/castan/scripts/init-middlebox.sh"]
+RUN /bin/bash ~/castan/scripts/perf/init-middlebox.sh

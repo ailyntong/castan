@@ -7,6 +7,7 @@
 #include <time.h>
 
 #include <rte_eal.h>
+#include <rte_errno.h>
 #include <rte_lcore.h>
 #include <rte_memzone.h>
 
@@ -198,6 +199,7 @@ int main(int argc, char *argv[]) {
 
   const struct rte_memzone *mz = rte_memzone_reserve_aligned(
       "Array", ARRAY_SIZE, rte_socket_id(), RTE_MEMZONE_1GB, PAGE_SIZE);
+  printf("%s\n", rte_strerror(rte_errno));
   assert(mz && "Unable to allocate memory zone.");
   array = (char *)mz->addr;
   printf("Array physical address: %016lX\n", rte_mem_virt2phy(array));

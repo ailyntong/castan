@@ -28,24 +28,27 @@ def main():
     # cmd('apt install -yqq iproute2')
     # cmd('apt install -yqq net-tools')
     # cmd('apt install -yqq telnet telnetd iperf')
-    info('Setting up middlebox...\n')
-    d1.cmd('/bin/bash /home/castan/scripts/init-middlebox.sh')
+
+    # info('Setting up middlebox...\n')
+    # d1.cmd('/bin/bash ~/castan/scripts/perf/init-middlebox.sh')
 
 # TODO: moongen script broken because of kernel version number issue again,
 # trying to figure where exactly is causing it
-#    info('Setting up tester...\n')
-#    d2.cmd('/bin/bash /home/castan/scripts/init-tester.sh')
+    # info('Setting up tester...\n')
+    # d2.cmd('/bin/bash /home/castan/scripts/init-tester.sh')
 
     info('Adding links...\n')
     s1 = net.addSwitch('s1')
     net.addLink(d1, s1, cls=TCLink, delay='1ms', bw=1000)
     net.addLink(d2, s1, cls=TCLink, delay='1ms', bw=1000)
-    # net.addLink(c0, s1)
     net.start()
     info('Network started.\n')
 
     info('Pinging all hosts...\n')
     net.ping([d1, d2])
+
+    info('Running the experiment...\n')
+    d1.cmd('/bin/bash ~/castan/scripts/perf/start-middlebox.sh dpdk-nat-basichash')
 
     info('Starting CLI...\n')
     CLI(net)

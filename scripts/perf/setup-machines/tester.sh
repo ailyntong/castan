@@ -4,14 +4,19 @@ set -e
 
 echo "[init] Setting up tester..."
 
-sudo apt-get -qq update
+apt-get -qq update
 
-sudo apt-get install -yqq \
+# Update the kernel to the expected version, then relink headers.
+# apt-get install -yqq --reinstall linux-image-`uname -r`
+# apt-get install -yqq linux-headers-`uname -r`
+
+# Dependencies
+apt-get install -yqq \
     tcpdump hping3 python-scapy git \
     libpcap-dev libglib2.0-dev \
     daemon iperf3 netperf liblua5.2-dev \
     make binutils gcc \
-    bc cmake
+    bc cmake libnuma-dev kmod
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 

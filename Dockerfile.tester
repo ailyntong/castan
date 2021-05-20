@@ -14,13 +14,15 @@ RUN apt-get update && apt-get install -y \
     iperf \
     sudo
 
-RUN useradd -m castan && \
-    echo 'castan  ALL=(root) NOPASSWD: ALL' >> /etc/sudoers
+# RUN useradd -m castan && \
+#     echo 'castan  ALL=(root) NOPASSWD: ALL' >> /etc/sudoers
 
-COPY ./scripts/perf /home/castan/scripts
-RUN chown -R castan /home/castan/scripts
+COPY . /root/castan
+# COPY ./scripts/perf /home/castan/scripts
+# RUN chown -R castan /home/castan/scripts
 
 # USER castan
 # WORKDIR /home/castan
 
 # RUN /home/castan/scripts/init-tester.sh
+RUN /bin/bash ~/castan/scripts/perf/init-tester.sh

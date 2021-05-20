@@ -1,0 +1,11 @@
+--- rte.vars.mk.old	2021-05-19 23:49:34.201137493 -0700
++++ rte.vars.mk.new	2021-05-19 23:49:55.673473920 -0700
+@@ -97,7 +97,7 @@
+ endif
+ 
+ # can be overridden by make command line or exported environment variable
+-RTE_KERNELDIR ?= /lib/modules/$(shell uname -r)/build
++RTE_KERNELDIR ?= /lib/modules/4.4.0-210-generic/build
+ 
+ export RTE_TARGET
+ export RTE_ARCH
