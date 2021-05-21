@@ -7,10 +7,12 @@ if [ ! -f moon-gen/.built ]; then
     cd moon-gen
     # ./build.sh
     git submodule update --init
-    cd libmoon
-    git submodule update --init --recursive
-    patch ~/moon-gen/libmoon/deps/dpdk/mk/rte.vars.mk < ~/castan/experiments/libmoon_rte.vars.mk.patch
-    ./build.sh --moongen
+    # cd libmoon
+    # git submodule update --init --recursive
+    # patch ~/moon-gen/libmoon/deps/dpdk/mk/rte.vars.mk < ~/castan/experiments/libmoon_rte.vars.mk.patch
+    # ./build.sh --moongen
+    patch ~/moon-gen/libmoon/bind-interfaces.sh < ~/castan/experiments/bind-interfaces.sh.patch
+    ./build.sh
 
     touch .built
 fi
