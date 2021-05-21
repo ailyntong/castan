@@ -9,7 +9,8 @@ apt-get -qq update
 apt-get install -yqq \
     tcpdump git libpcap-dev \
     linux-headers-4.4.0-210-generic \
-    libglib2.0-dev daemon iperf3 netperf tmux
+    libglib2.0-dev daemon iperf3 netperf tmux \
+    lshw
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 

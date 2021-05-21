@@ -3,6 +3,8 @@ docker stop mn.d1
 docker stop mn.d2
 docker rm mn.d1
 docker rm mn.d2
+docker image prune -af
+docker container prune -f
 
 ip link delete s1-eth1
 ip link delete s1-eth2

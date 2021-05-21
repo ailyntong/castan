@@ -17,7 +17,8 @@ apt-get install -yqq \
     daemon iperf3 netperf liblua5.2-dev \
     make binutils gcc \
     bc cmake \
-    libnuma-dev kmod pciutils
+    libnuma-dev kmod pciutils \
+    lshw
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 

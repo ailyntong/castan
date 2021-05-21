@@ -20,8 +20,11 @@ def main():
 
     info('Adding links...\n')
     switch = net.addSwitch('s1')
-    net.addLink(middlebox, switch, cls=TCLink, delay='1ms', bw=1000)
-    net.addLink(tester, switch, cls=TCLink, delay='1ms', bw=1000)
+    net.addLink(middlebox, switch, cls=TCLink, delay='0ms', bw=1000)
+    net.addLink(tester, switch, cls=TCLink, delay='0ms', bw=1000)
+    net.addLink(middlebox, tester, cls=TCLink, delay='1ms', bw=1000)
+    middlebox.setMAC('00:00:00:00:00:fb', 'd1-eth1')
+    tester.setMAC('00:00:00:00:00:fc', 'd2-eth1')
     net.start()
     info('Network started.\n')
 
@@ -36,7 +39,7 @@ def main():
 
     middlebox.cmd('mkdir /mnt/huge')
     middlebox.cmd('mount -t hugetlbfs nodev /mnt/huge')
-    middlebox.cmd('/bin/bash ~/castan/scripts/perf/start-middlebox.sh %s' % nf)
+    # middlebox.cmd('/bin/bash ~/castan/scripts/perf/start-middlebox.sh %s' % nf)
     # middlebox.cmd('/bin/bash ~/castan/scripts/perf/run.sh %s %s %s %s' % (nf, scenario, result_file, pcap_file))
 
     info('Starting CLI...\n')
